@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="recruit.css">
+
+</head>
+<body>
+
+<div class="main">
+
+    <!-- SIDEBAR -->
+    <div class="options">
+
+        <button type="button">
+            <a href="../index.html">Dashboard</a>
+        </button>
+
+        <button type="button">
+            <a href="./Employee/employee.html">Employee</a>
+        </button>
+
+        <button type="button">
+            <a href="./Payroll/payroll.html">Payroll</a>
+        </button>
+
+        <button type="button">
+            <a href="Attendance/myattendance.html.jsp">Attendance</a>
+        </button>
+
+        <button type="button">
+            <a href="/Recruitment/recruit.html">Jobs</a>
+        </button>
+
+        <button type="button">
+            <a href="#">Users</a>
+        </button>
+
+    </div>
+
+    <!-- PAGE -->
+    <div class="recruit_page">
+
+        <!-- TOP -->
+        <div class="recruit_nav">
+
+            <h2>Recruitment Dashboard</h2>
+
+            <form action="" method="get">
+
+                <input type="text" placeholder="Search candidate">
+
+                <button type="submit">Search</button>
+
+                <button type="button">Add Job</button>
+
+            </form>
+
+        </div>
+
+        <!-- STATS -->
+        <div class="recruit_cards">
+
+            <div class="recruit_card">
+                <h4>Open Positions</h4>
+                <p>12</p>
+            </div>
+
+            <div class="recruit_card">
+                <h4>Applications</h4>
+                <p>85</p>
+            </div>
+
+            <div class="recruit_card">
+                <h4>Interviews</h4>
+                <p>18</p>
+            </div>
+
+            <div class="recruit_card">
+                <h4>Hired</h4>
+                <p>6</p>
+            </div>
+
+        </div>
+
+        <!-- JOB TABLE -->
+        <div class="job_table">
+
+            <table class="table table-hover align-middle">
+
+                <thead>
+
+                    <tr>
+                        <th>Job Title</th>
+                        <th>Department</th>
+                        <th>Location</th>
+                        <th>Status</th>
+                        <th>Applicants</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Frontend Developer</td>
+                        <td>IT</td>
+                        <td>Port-Louis</td>
+                        <td>
+                            <span class="badge bg-success">
+                                Open
+                            </span>
+                        </td>
+                        <td>24</td>
+                    </tr>
+
+                    <tr>
+                        <td>UI/UX Designer</td>
+                        <td>Design</td>
+                        <td>Rose-Hill</td>
+                        <td>
+                            <span class="badge bg-warning text-dark">
+                                Interviewing
+                            </span>
+                        </td>
+                        <td>13</td>
+                    </tr>
+
+                    <tr>
+                        <td>Backend Developer</td>
+                        <td>IT</td>
+                        <td>Curepipe</td>
+                        <td>
+                            <span class="badge bg-danger">
+                                Closed
+                            </span>
+                        </td>
+                        <td>48</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <!-- APPLICATION FORM -->
+        <div class="application_form">
+
+            <h3>Add Candidate</h3>
+
+            <form>
+
+                <input type="text" placeholder="Full Name">
+
+                <input type="email" placeholder="Email">
+
+                <input type="text" placeholder="Position">
+
+                <input type="text" placeholder="Location">
+
+                <select>
+                    <option>Status</option>
+                    <option>Applied</option>
+                    <option>Interview</option>
+                    <option>Accepted</option>
+                    <option>Rejected</option>
+                </select>
+
+                <button type="submit">
+                    Save Candidate
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</body>
+</html>

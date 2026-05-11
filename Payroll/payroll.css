@@ -1,0 +1,194 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background: #f4f7fc;
+}
+
+/* MAIN LAYOUT */
+
+.main{
+    display: flex;
+    min-height: 100vh;
+}
+
+/* SIDEBAR */
+
+.options{
+    width: 250px;
+    background: #1e293b;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    flex-shrink: 0;
+}
+
+.options button{
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background: transparent;
+    color: white;
+    font-size: 16px;
+    text-align: left;
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+.options button:hover{
+    background: #3b82f6;
+    transform: translateX(5px);
+}
+
+.options a{
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    display: block;
+    width: 100%;
+}
+
+/* PAGE */
+
+.payroll_page{
+    flex: 1;
+    padding: 30px;
+    width: 100%;
+}
+
+/* NAVIGATION */
+
+.payroll_nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.payroll_nav h2{
+    font-size: 34px;
+    color: #1e293b;
+    font-weight: bold;
+}
+
+.payroll_nav form{
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.payroll_nav input{
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    outline: none;
+    width: 250px;
+}
+
+.payroll_nav button{
+    padding: 12px 18px;
+    border: none;
+    border-radius: 10px;
+    background: #3b82f6;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.payroll_nav button:hover{
+    background: #2563eb;
+}
+
+/* CARDS */
+
+.payroll_cards{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+    margin-bottom: 35px;
+}
+
+.salary_card{
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+.salary_card:hover{
+    transform: translateY(-5px);
+}
+
+.salary_card h4{
+    color: #64748b;
+    margin-bottom: 15px;
+    font-size: 22px;
+}
+
+.salary_card p{
+    font-size: 35px;
+    font-weight: bold;
+    color: #1e293b;
+}
+
+/* TABLE */
+
+.payroll_table{
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    overflow-x: auto;
+}
+
+.payroll_table table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.payroll_table thead{
+    background: #1e293b;
+    color: white;
+}
+
+.payroll_table th,
+.payroll_table td{
+    padding: 18px;
+    text-align: left;
+}
+
+.payroll_table tbody tr{
+    border-bottom: 1px solid #ddd;
+}
+
+.payroll_table tbody tr:hover{
+    background: #f1f5f9;
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 900px){
+
+    .payroll_cards{
+        grid-template-columns: 1fr;
+    }
+
+    .payroll_nav{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .options{
+        width: 200px;
+    }
+
+}
