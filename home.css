@@ -1,66 +1,44 @@
 
-body {
-    font-family: 'Inter', sans-serif;
-    background-color: #ffffff;
-    color: #2d3436;
-}
-.hero-section {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    background: linear-gradient(135deg, #f8f9fc 0%, #eef2f7 100%);
-    position: relative;
-    overflow: hidden;
-}
-/* Decorative circle in background */
-.hero-section::before {
-    content: "";
-    position: absolute;
-    top: -10%;
-    right: -5%;
-    width: 400px;
-    height: 400px;
-    background: rgba(78, 115, 223, 0.05);
-    border-radius: 50%;
-}
-.brand-name {
-    font-weight: 700;
-    letter-spacing: -1px;
-    font-size: 2.5rem;
-}
-.btn-landing {
-    padding: 1rem 2rem;
-    font-weight: 600;
-    border-radius: 0.75rem;
+body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+
+/* Seamless Navbar */
+.navbar {
     transition: all 0.3s ease;
+    padding: 1rem 0;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+.hero-section {
+    padding: 160px 0 100px;
+    background: linear-gradient(135deg, #f8f9fc 0%, #eef2f7 100%);
+}
+
+.img-placeholder {
+    background: #e9ecef;
+    border-radius: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    min-height: 400px;
+    overflow: hidden;
 }
-.btn-job {
-    background-color: #ffffff;
-    border: 2px solid #4e73df;
-    color: #4e73df;
+
+.img-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
-.btn-job:hover {
-    background-color: #f8f9fc;
-    transform: translateY(-3px);
-}
-.btn-login {
-    background-color: #4e73df;
-    border: 2px solid #4e73df;
-    color: #ffffff;
-    box-shadow: 0 4px 14px 0 rgba(78, 115, 223, 0.39);
-}
-.btn-login:hover {
-    background-color: #2e59d9;
+
+.section-title { font-weight: 700; color: #2d3436; margin-bottom: 3rem; }
+
+.contact-card {
+    border: none;
+    border-radius: 1rem;
+    background: #4e73df;
     color: white;
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(78, 115, 223, 0.23);
+    padding: 3rem;
 }
-.feature-icon {
-    font-size: 1.5rem;
-    color: #4e73df;
-    margin-bottom: 1rem;
-}
+
+.footer { background: #f8f9fc; padding: 4rem 0 2rem; }
