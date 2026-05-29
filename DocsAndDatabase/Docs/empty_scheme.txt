@@ -37,7 +37,7 @@ CREATE TABLE Candidate (
 -- 3. EMPLOYEE DEPENDENT TABLES
 -- ========================================================
 
-CREATE TABLE Leave (
+CREATE TABLE Leaves (
     request_id INT PRIMARY KEY,
     start_date DATE NOT NULL,
     end_date DATE NOT NULL,

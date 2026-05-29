@@ -1,4 +1,4 @@
-package com.hrapp.data.document.domain;
+package com.hrapp.data.document.entity;
 
 import io.micronaut.data.annotation.Id;
 import io.micronaut.data.annotation.MappedEntity;

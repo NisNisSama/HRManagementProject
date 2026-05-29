@@ -1,4 +1,4 @@
-package com.hrapp.data.employee.domain;
+package com.hrapp.data.employee.entity;
 
 import io.micronaut.data.annotation.Id;
 import io.micronaut.data.annotation.MappedEntity;

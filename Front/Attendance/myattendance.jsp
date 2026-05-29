@@ -15,7 +15,7 @@
         <div class="container">
             <span class="navbar-brand fw-bold text-primary">HR<span class="text-dark">Pulse</span></span>
             <div class="ms-auto">
-                <a href="leaverequest.jsp" class="btn btn-sm btn-outline-secondary me-2">Request</a>
+                <a href="../Leaves/leaverequest.jsp" class="btn btn-sm btn-outline-secondary me-2">Request</a>
                 <span class="text-muted small fw-bold">John Doe</span>
             </div>
         </div>

@@ -14,8 +14,7 @@
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark mb-4">
         <div class="container">
             <span class="navbar-brand fw-bold text-white">HR<span class="text-primary">Pulse</span> <span class="badge bg-primary ms-2 small" style="font-size: 0.6rem;">ADMIN</span></span>
-            <a href="manageleave.jsp" class="btn btn-sm btn-outline-secondary me-2">Manage Leaves</a>
-            <a href="attendancereport.jsp" class="btn btn-sm btn-outline-secondary me-2">Attendance</a>
+            <a href="../Leaves/manageleave.jsp" class="btn btn-sm btn-outline-light me-2">Back to Manage Leaves</a>
             <div class="ms-auto text-white-50 small">Admin: <span class="text-white fw-bold">Sarah Jenkins</span></div>
         </div>
     </nav>

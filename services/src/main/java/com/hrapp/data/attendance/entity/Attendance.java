@@ -1,4 +1,4 @@
-package com.hrapp.data.attendance.domain;
+package com.hrapp.data.attendance.entity;
 
 import io.micronaut.data.annotation.Id;
 import io.micronaut.data.annotation.MappedEntity;

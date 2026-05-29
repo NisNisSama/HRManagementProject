@@ -1,4 +1,4 @@
-package com.hrapp.data.payslip.domain;
+package com.hrapp.data.payslip.entity;
 
 import io.micronaut.data.annotation.Id;
 import io.micronaut.data.annotation.MappedEntity;

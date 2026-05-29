@@ -41,7 +41,7 @@ UPDATE Employee SET payroll_id = 203 WHERE emp_id = 3;
 -- ========================================================
 -- 6. POPULATE LEAVE REQUESTS
 -- ========================================================
-INSERT INTO Leave (request_id, start_date, end_date, reason, type, status, emp_id) VALUES
+INSERT INTO Leaves (request_id, start_date, end_date, reason, type, status, emp_id) VALUES
 (301, '2026-06-01', '2026-06-05', 'Annual family vacation', true, true, 1),      -- Paid & Approved
 (302, '2026-05-10', '2026-05-12', 'Minor surgical procedure', true, true, 2),   -- Paid & Approved
 (303, '2026-07-15', '2026-07-20', 'Personal reasons', false, NULL, 3);           -- Unpaid & Pending

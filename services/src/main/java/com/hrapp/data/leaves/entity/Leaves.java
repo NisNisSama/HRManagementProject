@@ -1,12 +1,12 @@
-package com.hrapp.data.leave.domain;
+package com.hrapp.data.leaves.entity;
 
 import io.micronaut.data.annotation.Id;
 import io.micronaut.data.annotation.MappedEntity;
 import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 
-@MappedEntity("Leave") // Maps to your 'Leave' table
-public class Leave {
+@MappedEntity("Leaves") // Maps to your 'Leave' table
+public class Leaves {
 
     @Id // Maps to 'request_id'
     private Integer requestId;
@@ -28,10 +28,10 @@ public class Leave {
     private Integer empId; // Maps to 'emp_id' foreign key column
 
     // Empty constructor for Micronaut
-    public Leave() {}
+    public Leaves() {}
 
     // Full constructor
-    public Leave(Integer requestId, LocalDate startDate, LocalDate endDate, String reason, Boolean type, Boolean status, Integer empId) {
+    public Leaves(Integer requestId, LocalDate startDate, LocalDate endDate, String reason, Boolean type, Boolean status, Integer empId) {
         this.requestId = requestId;
         this.startDate = startDate;
         this.endDate = endDate;
