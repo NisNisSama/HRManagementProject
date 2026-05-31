@@ -28,18 +28,18 @@ public class AttendanceController {
     //record attendance - Clock in and Clock out
     @Post("/create")
     public HttpResponse<?> createAttendance(LocalDateTime datetime, int emp_id, boolean type){
-
+        new AttendanceDTO(datetime, emp_id, type);
 
         return HttpResponse.ok();
     };
 
     //returning the personal records for a single employee
-    @Get("/getsingle")
+    @Get("/{emp_id}")
     public void getSingleReport(int emp_id){
     };
 
     //returning all records for HR
-    @Get("/getall")
+    @Get("/all")
     public List<AttendanceDTO> getAllReport(){
         return attendanceList;
     };

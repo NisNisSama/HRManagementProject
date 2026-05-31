@@ -1,8 +1,6 @@
 package com.hrapp.data.attendance.domain;
 
-import io.micronaut.data.annotation.Id;
 import io.micronaut.serde.annotation.Serdeable;
-import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 

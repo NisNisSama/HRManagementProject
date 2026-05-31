@@ -28,8 +28,8 @@
             </div>
             <div class="col-md-4">
                 <div class="card bg-white border-0 shadow-sm p-3 border-start border-info border-4">
-                    <span class="text-muted small fw-bold">Remote Work Entities</span>
-                    <h3 class="fw-bold text-info m-0">58 Staff Members</h3>
+                    <span class="text-muted small fw-bold">Onboard New Employee</span>
+                    <a class="btn btn-sm btn-secondary fw-bold" href="addemployee.jsp">New Employee</a>
                 </div>
             </div>
         </div>
