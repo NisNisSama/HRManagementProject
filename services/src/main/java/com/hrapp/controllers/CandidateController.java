@@ -5,13 +5,18 @@ import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller("/candidate")
 public class CandidateController {
     @Get("/all")
     public List<CandidateDTO> allCandidate(){
-        List<CandidateDTO> candidateList = List.of();
+        List<CandidateDTO> candidateList = new ArrayList<>(List.of(
+                new CandidateDTO(200, "Sahoo", "sahoo@gmail.com", "New Candidate", 1),
+                new CandidateDTO(201, "Biza", "biza@gmail.com", "New Candidate", 1),
+                new CandidateDTO(203, "Kaboss", "kaboss@gmail.com", "New candidate", 2)
+        ));
         return candidateList;
     }
 

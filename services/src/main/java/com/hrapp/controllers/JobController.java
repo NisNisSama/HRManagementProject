@@ -6,6 +6,8 @@ import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -19,7 +21,11 @@ public class JobController {
 
     @Get("/all")
     public List<JobDTO> allJob(){
-        List<JobDTO> jobList = List.of();
+        List<JobDTO> jobList = new ArrayList<>(List.of(
+                new JobDTO(1, "Mpanasa trano", "Nettoyage OnSite 12000Rs", LocalDate.now() ),
+                new JobDTO(2, "Mpanasa vilia", "Nettoyage OnSite 12000Rs", LocalDate.now() ),
+                new JobDTO(3, "Mpanasa rindrina", "Nettoyage OnSite 12000Rs", LocalDate.now() )
+        ));
         return jobList;
     }
 

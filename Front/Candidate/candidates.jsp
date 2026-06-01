@@ -22,6 +22,7 @@
                 <table class="table table-hover align-middle">
                     <thead class="table-light">
                         <tr>
+                            <th>Nb</th>
                             <th>Candidate Details</th>
                             <th>Applied Role Connection</th>
                             <th>Submitted Resume</th>
@@ -29,7 +30,7 @@
                             <th class="text-end">Termination Action</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="candidateList">
                         
                         <tr>
                             <td>
@@ -108,5 +109,6 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="candidate.js"></script>
 </body>
 </html>
