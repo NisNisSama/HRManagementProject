@@ -40,7 +40,11 @@ public class AttendanceController {
 
     //returning all records for HR
     @Get("/all")
-    public List<AttendanceDTO> getAllReport(){
+    public List<AttendanceDTO> attendanceList = new ArrayList<>(List.off({
+            new AttendanceDTO(2026-06-06T15:30:45,02),
+            new AttendanceDTO(2026-06-06T16:30:45,03),
+            new AttendanceDTO(2026-06-06T16:35:45,04),
+        ));
         return attendanceList;
     };
 }

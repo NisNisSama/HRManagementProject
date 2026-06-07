@@ -18,7 +18,12 @@ public class LeavesController {
 
     @Get("/all")
     public List<LeavesDTO> allLeaves(){
-        List<LeavesDTO> leavesList = List.of();
+        List<LeavesDTODTO> leavesList = new ArrayList<>(List.of(
+            new LeavesDTO(1,2026-06-06,2026-08-06,"Sick","","emp",02),
+            new LeavesDTO(2,2026-08-06,2026-08-06,"wendding","","emp",03),
+            new LeaveDTO(3,2026-08-06,2026-08-12,"holiday","","emp",04),
+        ));
+
         return leavesList;
     }
 
