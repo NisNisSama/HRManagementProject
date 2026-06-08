@@ -1,8 +1,7 @@
-package com.hrapp.mappers.impl;
+package com.hrapp.mapper.impl;
 
 import com.hrapp.data.job.domain.JobDTO;
-import com.hrapp.mappers.JobMapper;
-import io.micronaut.transaction.annotation.Transactional;
+import com.hrapp.mapper.JobMapper;
 import jakarta.inject.Singleton;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;

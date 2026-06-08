@@ -1,16 +1,12 @@
 package com.hrapp.controllers;
 
 import com.hrapp.data.job.domain.JobDTO;
-import com.hrapp.factory.BaseMyBatisFactory;
-import com.hrapp.mappers.JobMapper;
-import com.hrapp.mappers.impl.JobMapperImpl;
+import com.hrapp.mapper.JobMapper;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 

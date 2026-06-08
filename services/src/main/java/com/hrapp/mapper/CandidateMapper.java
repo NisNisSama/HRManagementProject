@@ -1,4 +1,4 @@
-package com.hrapp.mappers;
+package com.hrapp.mapper;
 
 import com.hrapp.data.candidate.domain.CandidateDTO;
 import org.apache.ibatis.annotations.Delete;
