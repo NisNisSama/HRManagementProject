@@ -5,6 +5,7 @@ import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller("/payroll")
@@ -18,9 +19,7 @@ public class PayrollController {
     @Get("/all")
     public List<PayrollDTO> allPayroll(){
         List<PayrollDTO> payrollList = new ArrayList<>(List.of(
-            new PayrollDTO(102,"600,000","5,000","0.00",500.00,3),
-            new PayrollDTO(103,"45,000","5,000","30.00",500.00,4),
-            new PayrollDTO(104,"120,000","6,000","130.00",450.00,5),
+
         ));
 
 

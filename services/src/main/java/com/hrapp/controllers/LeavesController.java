@@ -6,6 +6,7 @@ import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller("/leaves")
@@ -18,11 +19,7 @@ public class LeavesController {
 
     @Get("/all")
     public List<LeavesDTO> allLeaves(){
-        List<LeavesDTODTO> leavesList = new ArrayList<>(List.of(
-            new LeavesDTO(1,2026-06-06,2026-08-06,"Sick","","emp",02),
-            new LeavesDTO(2,2026-08-06,2026-08-06,"wendding","","emp",03),
-            new LeaveDTO(3,2026-08-06,2026-08-12,"holiday","","emp",04),
-        ));
+        List<LeavesDTO> leavesList = new ArrayList<>(List.of());
 
         return leavesList;
     }

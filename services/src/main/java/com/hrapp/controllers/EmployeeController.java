@@ -5,6 +5,7 @@ import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller("/employee")
@@ -17,11 +18,7 @@ public class EmployeeController {
 
     @Get("/all")
     public List<EmployeeDTO> allEmployee(){
-        List<EmployeeDTO> employeeList = new ArrayList<>(List.of(
-            new EmployeeDTO(1,"oli","dev","aaaa",23,"F","emp"),
-            new EmployeeDTO(2,"kelly","drh","0000",45,"F","admin"),
-            new EmployeeDTO(3,"kevin","reception","1234",28,"M","emp"),
-        ));
+        List<EmployeeDTO> employeeList = new ArrayList<>(List.of());
         return employeeList;
     }
 

@@ -6,6 +6,7 @@ import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller("/payslip")
@@ -19,9 +20,7 @@ public class PayslipControlller {
     @Get("/all")
     public List<PayslipDTO> allPayslip(){
         List<PayslipDTO> payslipList = new ArrayList<>(List.of(
-            new PayslipDTO(1,2026-06-06,2026-08-06,2026-06-23,3,"34,000",102,3),
-            new PayslipDTO(2,2026-06-06,2026-08-06,2026-06-23,5,"5,000",107,7),
-            new PayslipDTO(3,2026-06-21,2026-08-22,2026-07-23,8,"17,000",108,8),
+
         ));
 
         return payslipList;
