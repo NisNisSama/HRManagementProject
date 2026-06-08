@@ -39,7 +39,7 @@
                         <tr>
                             <th>Job Code</th>
                             <th>Role Title</th>
-                            <th>Department</th>
+                            <th>Missions</th>
                             <th>Location</th>
                             <th>Salary Target</th>
                             <th class="text-end">Actions</th>

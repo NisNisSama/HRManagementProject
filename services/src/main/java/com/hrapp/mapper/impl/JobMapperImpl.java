@@ -2,6 +2,8 @@ package com.hrapp.mapper.impl;
 
 import com.hrapp.data.job.domain.JobDTO;
 import com.hrapp.mapper.JobMapper;
+import io.micronaut.data.connection.annotation.Connectable;
+import io.micronaut.transaction.annotation.Transactional;
 import jakarta.inject.Singleton;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -21,6 +23,7 @@ public class JobMapperImpl implements JobMapper {
     }
 
     @Override
+    @Connectable
     public List<JobDTO> findAll() {
         try(SqlSession sqlSession = currentSessionFactory.openSession()){
             return getMapper(sqlSession).findAll();

@@ -110,5 +110,4 @@
     </div>
 
 </body>
-<script src="payslip.js"></script>
 </html>

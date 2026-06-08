@@ -135,5 +135,4 @@
     </div>
 
 </body>
-<script src="payroll.js"></script>
 </html>

@@ -24,8 +24,8 @@ public class JobController {
         return job;
     }
 
-    @Get("/all")
-    public List<JobDTO> allJob(){
+    @Get("/findAll")
+    public List<JobDTO> findAll(){
         return jobMapper.findAll();
     }
 

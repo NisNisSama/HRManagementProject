@@ -62,7 +62,6 @@
             </div>
         </div>
     </div>
-    <script src="employee.js"></script>
 
 </body>
 </html>

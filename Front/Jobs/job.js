@@ -13,7 +13,7 @@ async function fetchAndPopulateJobs() {
     const tableBody = document.getElementById('jobTableBody');
     
     try {
-        const response = await fetch(API_URL+"/all");
+        const response = await fetch(API_URL+"/findAll");
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -45,7 +45,7 @@ async function fetchAndPopulateJobs() {
         //         `;
         //     }
 
-            const[role, site, salary] = job.description.split(" ");
+            const[role, site, salary] = job.description.split("/");
             // Assemble the complete row structure
             row.innerHTML = `
                 <td class="fw-bold text-secondary">${job.jobId}</td>
@@ -53,9 +53,17 @@ async function fetchAndPopulateJobs() {
                     <span class="fw-semibold text-dark d-block">${job.title}</span>
                     <small class="text-muted">Posted ${job.date}</small>
                 </td>
-                <td><span class="badge bg-primary-subtle text-primary">${role}</span></td>
+                <td><span class="">${role}</span></td>
                 <td><i class="bi me-1 bi-geo-alt-fill"></i>${site}</td>
                 <td>${salary}</td>
+                <td>
+                    <a href="jobedit.jsp?id=${job.jobId}" class="btn btn-sm btn-warning text-dark me-1" title="Edit Listing">
+                        <i class="bi bi-pencil-square"></i>
+                    </a>
+                    <button class="btn btn-sm btn-danger" onclick="confirmDelete('${job.jobId}')" title="Remove Listing">
+                        <i class="bi bi-trash3-fill"></i>
+                    </button>
+                </td>
             `;
 
             tableBody.appendChild(row);
