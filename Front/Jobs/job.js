@@ -22,14 +22,14 @@ async function fetchAndPopulateJobs() {
         console.log(jobList);
         
         // Clear any existing hardcoded table rows or placeholders
-        //tableBody.innerHTML = '';
+        tableBody.innerHTML = '';
 
         // Iterate through each job object and construct the DOM elements
-        //jobList.forEach(job => {
-        //     const row = document.createElement('tr');
+        jobList.forEach(job => {
+            const row = document.createElement('tr');
             
-        //     // Set up context-dependent badges/icons
-        //     const deptBadgeClass = job.department === 'Engineering' ? 'bg-primary-subtle text-primary' : 'bg-info-subtle text-info text-dark';
+             // Set up context-dependent badges/icons
+        //    const deptBadgeClass = job.department === 'Engineering' ? 'bg-primary-subtle text-primary' : 'bg-info-subtle text-info text-dark';
         //     const locationIcon = job.location.toLowerCase().includes('remote') ? 'bi-geo-alt-fill' : 'bi-building';
 
         //     // Generate HR Management Controls only if the logged-in user is HR
@@ -45,24 +45,21 @@ async function fetchAndPopulateJobs() {
         //         `;
         //     }
 
-        //     // Assemble the complete row structure
-        //     row.innerHTML = `
-        //         <td class="fw-bold text-secondary">${job.jobCode}</td>
-        //         <td>
-        //             <span class="fw-semibold text-dark d-block">${job.roleTitle}</span>
-        //             <small class="text-muted">Posted ${job.postedTime}</small>
-        //         </td>
-        //         <td><span class="badge ${deptBadgeClass}">${job.department}</span></td>
-        //         <td><i class="bi ${locationIcon} me-1"></i>${job.location}</td>
-        //         <td>${job.salaryTarget}</td>
-        //         <td class="text-end">
-        //             <a href="application.jsp?id=${job.id}" class="btn btn-sm btn-outline-primary me-1">Apply Now</a>
-        //             ${hrControlsHtml}
-        //         </td>
-        //     `;
+            const[role, site, salary] = job.description.split(" ");
+            // Assemble the complete row structure
+            row.innerHTML = `
+                <td class="fw-bold text-secondary">${job.jobId}</td>
+                <td>
+                    <span class="fw-semibold text-dark d-block">${job.title}</span>
+                    <small class="text-muted">Posted ${job.date}</small>
+                </td>
+                <td><span class="badge bg-primary-subtle text-primary">${role}</span></td>
+                <td><i class="bi me-1 bi-geo-alt-fill"></i>${site}</td>
+                <td>${salary}</td>
+            `;
 
-        //     tableBody.appendChild(row);
-        // });
+            tableBody.appendChild(row);
+        });
 
     } catch (error) {
         console.error('Error fetching job listings:', error);

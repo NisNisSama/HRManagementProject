@@ -1,6 +1,9 @@
 package com.hrapp.controllers;
 
 import com.hrapp.data.job.domain.JobDTO;
+import com.hrapp.factory.BaseMyBatisFactory;
+import com.hrapp.mappers.JobMapper;
+import com.hrapp.mappers.impl.JobMapperImpl;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
@@ -13,6 +16,12 @@ import java.util.List;
 
 @Controller("/job")
 public class JobController {
+    private final JobMapper jobMapper;
+
+    public JobController(JobMapper jobMapper) {
+        this.jobMapper = jobMapper;
+    }
+
     @Get("/{jobId}")
     public JobDTO oneJob(Integer jobId){
         JobDTO job = null;
@@ -21,12 +30,7 @@ public class JobController {
 
     @Get("/all")
     public List<JobDTO> allJob(){
-        List<JobDTO> jobList = new ArrayList<>(List.of(
-                new JobDTO(1, "Mpanasa trano", "Nettoyage OnSite 12000Rs", LocalDate.now() ),
-                new JobDTO(2, "Mpanasa vilia", "Nettoyage OnSite 12000Rs", LocalDate.now() ),
-                new JobDTO(3, "Mpanasa rindrina", "Nettoyage OnSite 12000Rs", LocalDate.now() )
-        ));
-        return jobList;
+        return jobMapper.findAll();
     }
 
     @Post("/create")
