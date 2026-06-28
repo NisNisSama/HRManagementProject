@@ -25,6 +25,7 @@ services:
       context: ../
       dockerfile: infra/api/Dockerfile
     container_name: hr_back_server
+    restart: always
     ports:
       - "8090:8090"
     environment:
@@ -41,6 +42,7 @@ services:
       context: ../
       dockerfile: infra/front/Dockerfile
     container_name: hr_front_server
+    restart: always
     ports:
       - "8080:8080"
     depends_on:
