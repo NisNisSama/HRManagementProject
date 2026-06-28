@@ -1,4 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+    // Enforce session check: if no session or userEmail attribute exists, redirect immediately
+    if (session == null || session.getAttribute("username") == null) {
+        response.sendRedirect(request.getContextPath() + "/");
+        return; // Stop processing the rest of the JSP page
+    }
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>

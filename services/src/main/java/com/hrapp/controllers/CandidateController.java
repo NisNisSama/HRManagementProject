@@ -1,6 +1,8 @@
 package com.hrapp.controllers;
 
 import com.hrapp.data.candidate.domain.CandidateDTO;
+import com.hrapp.mapper.CandidateMapper;
+import com.hrapp.mapper.impl.CandidateMapperImpl;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
@@ -10,14 +12,13 @@ import java.util.List;
 
 @Controller("/candidate")
 public class CandidateController {
+    private final CandidateMapper candidateMapper;
+
+    public CandidateController(CandidateMapper candidateMapper){this.candidateMapper = candidateMapper;}
+
     @Get("/all")
     public List<CandidateDTO> allCandidate(){
-        List<CandidateDTO> candidateList = new ArrayList<>(List.of(
-                new CandidateDTO(200, "Sahoo", "sahoo@gmail.com", "New Candidate", 1),
-                new CandidateDTO(201, "Biza", "biza@gmail.com", "New Candidate", 1),
-                new CandidateDTO(203, "Kaboss", "kaboss@gmail.com", "New candidate", 2)
-        ));
-        return candidateList;
+        return candidateMapper.findAll();
     }
 
     @Get("/{candidateId}")

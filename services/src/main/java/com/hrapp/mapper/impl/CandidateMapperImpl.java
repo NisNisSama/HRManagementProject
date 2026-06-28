@@ -1,7 +1,7 @@
 package com.hrapp.mapper.impl;
 
-import com.hrapp.data.job.domain.JobDTO;
-import com.hrapp.mapper.JobMapper;
+import com.hrapp.data.candidate.domain.CandidateDTO;
+import com.hrapp.mapper.CandidateMapper;
 import io.micronaut.data.connection.annotation.Connectable;
 import jakarta.inject.Singleton;
 import org.apache.ibatis.session.SqlSession;
@@ -10,34 +10,33 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import java.util.List;
 
 @Singleton
-public class JobMapperImpl implements JobMapper {
+public class CandidateMapperImpl implements CandidateMapper {
+
     private final SqlSessionFactory currentSessionFactory;
 
-    public JobMapperImpl(SqlSessionFactory sqlFactory) {
+    public CandidateMapperImpl(SqlSessionFactory sqlFactory) {
         this.currentSessionFactory = sqlFactory;
     }
 
-    private JobMapper getMapper(SqlSession sqlSession){
-       return sqlSession.getMapper(JobMapper.class);
+    private CandidateMapper getMapper(SqlSession sqlSession){
+        return sqlSession.getMapper(CandidateMapper.class);
     }
 
     @Override
     @Connectable
-    public List<JobDTO> findAll() {
+    public List<CandidateDTO> findAll() {
         try(SqlSession sqlSession = currentSessionFactory.openSession()){
             return getMapper(sqlSession).findAll();
         }
     }
 
     @Override
-    public void insert(JobDTO job) {
-        try(SqlSession sqlSession = currentSessionFactory.openSession()){
-            getMapper(sqlSession).insert(job);
-        }
+    public void insert(CandidateDTO candidate) {
+
     }
 
     @Override
-    public int deleteById(Integer id) {
+    public int deleteById(Long id) {
         return 0;
     }
 }

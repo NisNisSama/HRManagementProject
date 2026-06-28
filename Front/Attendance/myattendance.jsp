@@ -1,3 +1,10 @@
+<%
+    // Enforce session check: if no session or userEmail attribute exists, redirect immediately
+    if (session == null || session.getAttribute("username") == null) {
+        response.sendRedirect(request.getContextPath() + "/");
+        return; // Stop processing the rest of the JSP page
+    }
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +23,13 @@
             <span class="navbar-brand fw-bold text-primary">HR<span class="text-dark">Pulse</span></span>
             <div class="ms-auto">
                 <a href="../Leaves/leaverequest.jsp" class="btn btn-sm btn-outline-secondary me-2">Request</a>
-                <span class="text-muted small fw-bold">John Doe</span>
+                <a href="../Employee/profile.jsp" class="btn btn-sm me-2 btn-outline-secondary fw-bold">${sessionScope.username}</a>
+                <span class="me-2 text-black fw-bold">Role: ${sessionScope.role}</span>
+                <a href="../Attendance/attendancereport.jsp" class="btn btn-sm btn-outline-secondary me-2">HR Dashboard</a>
+                <c:if test="${sessionScope.role == 'ADMIN'}">
+                    <a href="../Employee/admin.jsp" class="btn btn-sm btn-outline-secondary me-2">ADMIN PANEL</a>
+                </c:if>
+                <a href="#" onclick="handleLogout(event)" class="btn btn-sm bg-danger me-2 text-white">Logout</a>
             </div>
         </div>
     </nav>
@@ -145,4 +158,14 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="script.js"></script>
+
+<script>
+function handleLogout(event){
+    event.preventDefault();
+
+    localStorage.removeItem("userToken");
+
+    window.location.href = '${pageContext.request.contextPath}/del-session.jsp';
+}
+</script>
 </html>

@@ -19,8 +19,15 @@
                         <div class="h3 fw-bold text-primary">HR<span class="text-dark">Pulse</span></div>
                         <p class="text-muted">Welcome back! Please login to your account.</p>
                     </div>
+
+                    <c:if test="${not empty param.error}">
+                        <div class="h6 text-danger text-center">
+                            <P class="fw-bold d-inline">${param.error}</p>
+                        </div>
+                    </c:if>
+
                     <div class="card-body p-4">
-                        <form>
+                        <form id="loginForm">
                             <div class="mb-3">
                                 <label for="email" class="form-label text-secondary small fw-bold">Identification</label>
                                 <input type="email" class="form-control" id="email" placeholder="name@department" required>
@@ -38,9 +45,53 @@
                     <div class="card-footer bg-white border-0 pb-4 text-center">
                         <p class="small text-muted mb-0">New hire? <a href="#" class="text-decoration-none">Contact IT Support</a></p>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
+
+    <form id="sessionSetter" action="set-session.jsp" method="POST" style="display: none;">
+        <input type="hidden" name="role" id="tomcatRole">
+        <input type="hidden" name="username" id="tomcatUsername">
+    </form>
+
+    <script>
+        //const API = "http://192.168.200.10:8090";
+        const API = "http://localhost:8090" 
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Stop page from reloading automatically
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Step A: Authenticate against Micronaut
+            fetch(API+"/login", {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username: email, password: password })
+            })
+            .then(res => {
+                if (!res.ok) throw new Error(res.status);
+                return res.json();
+            })
+            .then(data => {
+                // Step B: Save token to LocalStorage for future Micronaut API calls
+                localStorage.setItem('userToken', data.token);
+
+                // Step C: Map the role data payload from Micronaut and pass it to Tomcat
+                document.getElementById('tomcatRole').value = data.employee.role; 
+                document.getElementById('tomcatUsername').value = data.employee.name+"@"+data.employee.department;
+
+                // Step D: Submit hidden form to create Tomcat session context
+                document.getElementById('sessionSetter').submit();
+            })
+            .catch(err => {
+                window.location.href = "/login.jsp?error=Failed Login: "+encodeURIComponent(err.message);
+            });
+        });
+    </script>
+
 </body>
 </html>

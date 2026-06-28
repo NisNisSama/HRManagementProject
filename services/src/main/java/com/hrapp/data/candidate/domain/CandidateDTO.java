@@ -15,6 +15,8 @@ public class CandidateDTO {
 
     private Integer jobId;
 
+    private String jobTitle;
+
     // Full constructor
     public CandidateDTO(Integer candidateId, String name, String email, String status, Integer jobId) {
         this.candidateId = candidateId;
@@ -39,4 +41,7 @@ public class CandidateDTO {
 
     public Integer getJobId() { return jobId; }
     public void setJobId(Integer jobId) { this.jobId = jobId; }
+
+    public String getJobTitle() {return jobTitle;}
+    public void setJobTitle(String jobTitle) {this.jobTitle = jobTitle;}
 }

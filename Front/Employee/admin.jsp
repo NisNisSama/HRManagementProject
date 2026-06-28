@@ -1,4 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+    // Enforce session check: if no session or userEmail attribute exists, redirect immediately
+    if (session == null || session.getAttribute("username") == null) {
+        response.sendRedirect(request.getContextPath() + "/");
+        return; // Stop processing the rest of the JSP page
+    }
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +21,7 @@
         <div class="container-fluid px-4">
             <a class="navbar-brand fw-bold" href="#"><i class="bi bi-terminal-fill me-2"></i>HRPulse Root Admin Terminal Context</a>
             <span class="badge bg-dark text-danger border border-danger px-3 py-2 fw-bold">Root Level Authorization Granted</span>
+            <a href="../Attendance/myattendance.jsp" class="btn btn-sm btn-dark text-white me-2">EXIT</a>
         </div>
     </nav>
 

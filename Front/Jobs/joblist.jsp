@@ -23,13 +23,13 @@
             </div>
             
             <%-- JSP Toggle: Show 'Add Job' button ONLY if logged-in user is HR --%>
-            <%-- <c:if test="${user.role == 'HR'}"> --%>
+            <c:if test="${sessionScope.role == 'HR'}">
             <div>
                 <a href="jobedit.jsp" class="btn btn-primary d-flex align-items-center gap-2">
                     <i class="bi bi-plus-circle-fill"></i> Add New Job Posting (HR)
                 </a>
             </div>
-            <%-- </c:if> --%>
+            </c:if>
         </div>
 
         <div class="card border-0 shadow-sm p-4">

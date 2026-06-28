@@ -21,17 +21,7 @@ public class EmployeeDTO {
     // Mapped as a nullable primitive wrapper (Integer) to avoid circular deadlock issues
     private Integer payrollId;
 
-    // Full constructor
-    public EmployeeDTO(Integer empId, String name, String department, String password, Integer age, String gender, String role, Integer payrollId) {
-        this.empId = empId;
-        this.name = name;
-        this.department = department;
-        this.password = password;
-        this.age = age;
-        this.gender = gender;
-        this.role = role;
-        this.payrollId = payrollId;
-    }
+    public EmployeeDTO(){}
 
     // Getters and Setters
     public Integer getEmpId() { return empId; }

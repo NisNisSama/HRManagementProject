@@ -1,4 +1,5 @@
-const API_URL = "http://192.168.200.10:8090/candidate";
+//const API_URL = "http://192.168.200.10:8090/candidate";
+const API_URL = "http://localhost:8090/candidate";
 
 async function populateList(){
     try {
@@ -21,7 +22,7 @@ async function populateList(){
                     <small class="text-muted">${candidate.email}</small>
                 </td>
                 <td>
-                    <span class="fw-semibold text-primary">"Generic"</span>
+                    <span class="fw-semibold text-primary">${candidate.jobTitle}</span>
                     <span class="d-block text-secondary small fw-bold">${candidate.jobId}</span>
                 </td>
                 <td>

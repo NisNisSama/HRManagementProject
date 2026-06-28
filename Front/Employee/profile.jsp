@@ -1,4 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+    // Enforce session check: if no session or userEmail attribute exists, redirect immediately
+    if (session == null || session.getAttribute("username") == null) {
+        response.sendRedirect(request.getContextPath() + "/");
+        return; // Stop processing the rest of the JSP page
+    }
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +19,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark ${param.viewAs == 'HR' ? 'bg-dark' : (param.viewAs == 'ADMIN' ? 'bg-danger' : 'bg-primary')} mb-4">
         <div class="container-fluid px-4">
-            <a class="navbar-brand fw-bold" href="#"><i class="bi bi-heart-pulse-fill me-2"></i>HRPulse Workbench</a>
+            <a class="navbar-brand fw-bold" href="#"><i class="bi bi-heart-pulse-fill me-2"></i>HRPulse</a>
             <div>
                 <c:choose>
                     <c:when test="${param.viewAs == 'HR'}">
@@ -22,7 +29,7 @@
                         <a href="admin.jsp" class="btn btn-outline-light btn-sm"><i class="bi bi-arrow-left"></i> Admin Terminal</a>
                     </c:when>
                     <c:otherwise>
-                        <span class="navbar-text text-white-50">Employee Portal</span>
+                        <a href="../Attendance/myattendance.jsp" class="btn btn-outline-light btn-sm"><i class="bi bi-arrow-left"></i> My Attendance</a>
                     </c:otherwise>
                 </c:choose>
             </div>
