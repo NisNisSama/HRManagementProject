@@ -5,7 +5,15 @@ async function populateList(){
     const tableBody = document.getElementById("candidateList");
         tableBody.innerHTML = "";
     try {
-        const response = await fetch(API_URL+"/all")
+        const response = await fetch(API_URL+"/all",{
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}` 
+                }
+            })
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
 
         const candidateList = await response.json();
 
