@@ -5,12 +5,15 @@ import com.hrapp.mapper.JobMapper;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
+import io.micronaut.security.annotation.Secured;
+import io.micronaut.security.rules.SecurityRule;
 
 import java.time.LocalDate;
 import java.util.List;
 
 
 @Controller("/job")
+@Secured("HR")
 public class JobController {
     private final JobMapper jobMapper;
 
@@ -19,12 +22,14 @@ public class JobController {
     }
 
     @Get("/{jobId}")
+    @Secured(SecurityRule.IS_ANONYMOUS)
     public JobDTO oneJob(Integer jobId){
         JobDTO job = null;
         return job;
     }
 
     @Get("/findAll")
+    @Secured(SecurityRule.IS_ANONYMOUS)
     public List<JobDTO> findAll(){
         return jobMapper.findAll();
     }
