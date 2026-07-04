@@ -168,7 +168,7 @@ function handleLogout(event){
 
     localStorage.removeItem("userToken");
 
-    window.location.href = '${pageContext.request.contextPath}/del-session.jsp';
+    window.location.href = '../del-session.jsp';
 }
 </script>
 </html>
