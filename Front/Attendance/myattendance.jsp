@@ -25,7 +25,10 @@
                 <a href="../Leaves/leaverequest.jsp" class="btn btn-sm btn-outline-secondary me-2">Request</a>
                 <a href="../Employee/profile.jsp" class="btn btn-sm me-2 btn-outline-secondary fw-bold">${sessionScope.username}</a>
                 <span class="me-2 text-black fw-bold">Role: ${sessionScope.role}</span>
-                <a href="../Attendance/attendancereport.jsp" class="btn btn-sm btn-outline-secondary me-2">HR Dashboard</a>
+                <span class="me-2 text-black fw-bold">EmpID: ${sessionScope.empId}</span>
+                <c:if test="${sessionScope.role == 'HR'}">
+                    <a href="../Attendance/attendancereport.jsp" class="btn btn-sm btn-outline-secondary me-2">HR Dashboard</a>
+                </c:if>
                 <c:if test="${sessionScope.role == 'ADMIN'}">
                     <a href="../Employee/admin.jsp" class="btn btn-sm btn-outline-secondary me-2">ADMIN PANEL</a>
                 </c:if>

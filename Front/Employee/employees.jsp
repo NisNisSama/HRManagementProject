@@ -5,6 +5,12 @@
         response.sendRedirect(request.getContextPath() + "/");
         return; // Stop processing the rest of the JSP page
     }
+
+    // Only HR can access
+    if (!session.getAttribute("role").equals("HR")){
+        response.sendRedirect(request.getContextPath()+"/Attendance/myattendance.jsp");
+        return;
+    }
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -54,16 +60,7 @@
                             <th class="text-end">Command Router Controls</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td class="fw-bold text-secondary">EMP-102</td>
-                            <td class="fw-semibold text-dark">Jane Doe</td>
-                            <td><span class="badge bg-primary-subtle text-primary">Engineering</span></td>
-                            <td>Senior Frontend Engineer</td>
-                            <td class="text-end">
-                                <a href="profile.jsp?targetEmpId=EMP-102&viewAs=HR" class="btn btn-sm btn-primary fw-semibold"><i class="bi bi-pencil-square"></i> View & Modify Profile</a>
-                            </td>
-                        </tr>
+                    <tbody id="tableBody">
                     </tbody>
                 </table>
             </div>
@@ -72,3 +69,4 @@
 
 </body>
 </html>
+<script src="employee.js"></script>

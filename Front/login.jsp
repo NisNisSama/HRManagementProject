@@ -30,7 +30,7 @@
                         <form id="loginForm">
                             <div class="mb-3">
                                 <label for="email" class="form-label text-secondary small fw-bold">Identification</label>
-                                <input type="email" class="form-control" id="email" placeholder="name@department" required>
+                                <input type="text" class="form-control" id="email" placeholder="name@department" required>
                             </div>
                             <div class="mb-3">
                                 <div class="d-flex justify-content-between">
@@ -52,13 +52,14 @@
     </div>
 
     <form id="sessionSetter" action="set-session.jsp" method="POST" style="display: none;">
+        <input type="hidden" name="empId" id="tomcatId">
         <input type="hidden" name="role" id="tomcatRole">
         <input type="hidden" name="username" id="tomcatUsername">
     </form>
 
     <script>
-        //const API = "http://192.168.200.10:8090";
-        const API = "http://localhost:8090" 
+        const API = "http://192.168.200.10:8090";
+        //const API = "http://localhost:8090" 
 
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault(); // Stop page from reloading automatically
@@ -73,16 +74,17 @@
                 body: JSON.stringify({ username: email, password: password })
             })
             .then(res => {
-                if (!res.ok) throw new Error(res.status);
+                if (!res.ok) throw new Error(res.message);
                 return res.json();
             })
             .then(data => {
                 // Step B: Save token to LocalStorage for future Micronaut API calls
-                localStorage.setItem('userToken', data.token);
+                localStorage.setItem('userToken', data.access_token);
 
                 // Step C: Map the role data payload from Micronaut and pass it to Tomcat
-                document.getElementById('tomcatRole').value = data.employee.role; 
-                document.getElementById('tomcatUsername').value = data.employee.name+"@"+data.employee.department;
+                document.getElementById('tomcatId').value = data.username.split("/")[0]; 
+                document.getElementById('tomcatRole').value = data.roles[0];
+                document.getElementById('tomcatUsername').value = data.username.split("/")[1];
 
                 // Step D: Submit hidden form to create Tomcat session context
                 document.getElementById('sessionSetter').submit();

@@ -2,19 +2,27 @@ package com.hrapp.controllers;
 
 import com.hrapp.data.employee.domain.EmployeeDTO;
 import com.hrapp.mapper.EmployeeMapper;
+import com.hrapp.services.PasswordService;
 import io.micronaut.http.HttpResponse;
-import io.micronaut.http.annotation.Body;
-import io.micronaut.http.annotation.Controller;
-import io.micronaut.http.annotation.Get;
-import io.micronaut.http.annotation.Post;
+import io.micronaut.http.annotation.*;
+import io.micronaut.security.annotation.Secured;
+import io.micronaut.security.rules.SecurityRule;
+import io.micronaut.transaction.annotation.Transactional;
+import jakarta.inject.Inject;
 
 import java.util.List;
+import java.util.UUID;
 
 @Controller("/employee")
+@Secured(SecurityRule.IS_AUTHENTICATED)
 public class EmployeeController {
+    private final PasswordService passwordService;
+
     private final EmployeeMapper employeeMapper;
 
-    public EmployeeController(EmployeeMapper employeeMapper){this.employeeMapper = employeeMapper;}
+    public EmployeeController(PasswordService passwordService, EmployeeMapper employeeMapper){
+        this.passwordService = passwordService;
+        this.employeeMapper = employeeMapper;}
 
     @Get("/{empId}")
     public EmployeeDTO oneEmployee(Long empId){
@@ -22,13 +30,18 @@ public class EmployeeController {
     }
 
     @Get("/all")
+    @Secured({"HR", "ADMIN"})
     public List<EmployeeDTO> allEmployee(){
         return employeeMapper.selectAll();
     }
 
     @Post("/create")
+    @Secured("HR")
     public HttpResponse<?> createEmployee(@Body EmployeeDTO employee){
         try{
+            employee.setEmpId(UUID.randomUUID().hashCode());
+            employee.setPassword(passwordService.hashPassword("Welcome2026!"));
+            employee.setPayrollId(1020);
             employeeMapper.insert(employee);
             return HttpResponse.ok();
         }
@@ -43,9 +56,9 @@ public class EmployeeController {
         return HttpResponse.ok();
     }
 
-    @Post("/update/{empId}")
+    @Patch("/update/{empId}")
     public HttpResponse<?> updatePassword(Long empId, @Body String password){
-        employeeMapper.updatePassword(empId, password);
+        employeeMapper.updatePassword(empId, passwordService.hashPassword(password));
         return HttpResponse.ok();
     }
 

@@ -10,7 +10,7 @@ import io.micronaut.http.annotation.Post;
 import java.util.Map;
 import java.util.UUID;
 
-@Controller("/login")
+@Controller("/Oldlogin")
 public class LoginController {
     private final LoginMapper loginMapper;
 
@@ -26,7 +26,7 @@ public class LoginController {
         String department = credentials.get("username").split("@", 2)[1];
         String password = credentials.get("password");
 
-        EmployeeDTO employee = this.loginMapper.findByLogin(name, department, password);
+        EmployeeDTO employee = this.loginMapper.findByLogin(name, department);
 
         if(employee!= null){
             String token = UUID.randomUUID().toString();

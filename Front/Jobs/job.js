@@ -1,6 +1,6 @@
 // Configuration: Replace with your actual API endpoint or JSON file path
-//const API_URL = 'http://192.168.200.10:8090/job';
-const API_URL = 'http://localhost:8090/job';
+const API_URL = 'http://192.168.200.10:8090/job';
+//const API_URL = 'http://localhost:8090/job';
 
 /**
  * Fetches jobs from the backend JSON API and populates the UI table.

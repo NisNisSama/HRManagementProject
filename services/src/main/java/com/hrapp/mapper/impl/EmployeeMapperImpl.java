@@ -3,11 +3,14 @@ package com.hrapp.mapper.impl;
 import com.hrapp.data.employee.domain.EmployeeDTO;
 import com.hrapp.mapper.EmployeeMapper;
 import io.micronaut.data.connection.annotation.Connectable;
+import io.micronaut.transaction.annotation.Transactional;
+import jakarta.inject.Singleton;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import java.util.List;
 
+@Singleton
 public class EmployeeMapperImpl implements EmployeeMapper {
     private final SqlSessionFactory currentSessionFactory;
 
@@ -41,6 +44,7 @@ public class EmployeeMapperImpl implements EmployeeMapper {
     public void insert(EmployeeDTO employee) {
         try(SqlSession sqlSession = currentSessionFactory.openSession()){
             getMapper(sqlSession).insert(employee);
+            sqlSession.commit();
         }
     }
 

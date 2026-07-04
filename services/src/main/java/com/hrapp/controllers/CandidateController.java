@@ -6,11 +6,14 @@ import com.hrapp.mapper.impl.CandidateMapperImpl;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
+import io.micronaut.security.annotation.Secured;
+import io.micronaut.security.rules.SecurityRule;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller("/candidate")
+@Secured("HR")
 public class CandidateController {
     private final CandidateMapper candidateMapper;
 
@@ -28,6 +31,7 @@ public class CandidateController {
     }
 
     @Post("/create")
+    @Secured(SecurityRule.IS_ANONYMOUS)
     public String createCandidate(Integer candidateId, String name, String email, String status, Integer jobId){
         new CandidateDTO(candidateId, name, email, status, jobId);
         return "Created";

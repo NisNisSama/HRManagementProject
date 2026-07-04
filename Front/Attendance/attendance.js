@@ -1,4 +1,4 @@
-API_URL = "https://localhost:8090/attendance";
+API_URL = "https://192.168.200.10:8090/attendance";
 
 async function populateList() {
     try {

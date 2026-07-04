@@ -31,6 +31,14 @@ dependencies {
     runtimeOnly("mysql:mysql-connector-java")
     implementation("org.mybatis:mybatis:3.5.10")
     implementation("io.micronaut.sql:micronaut-jdbc-hikari")
+    implementation("org.mindrot:jbcrypt:0.4")
+
+    // Core Micronaut Security
+    implementation("io.micronaut.security:micronaut-security")
+    // JWT/Bearer Token support (this brings in token generation and validation)
+    implementation("io.micronaut.security:micronaut-security-jwt")
+    // Reactive streams support (needed for the reactive AuthenticationProvider)
+    implementation("io.projectreactor:reactor-core")
 }
 
 

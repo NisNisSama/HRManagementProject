@@ -10,12 +10,12 @@ public interface EmployeeMapper {
             " role, payroll_id as payrollId FROM Employee")
     List<EmployeeDTO> selectAll();
 
-    @Select("SELECT emp_id as empId, name, department, age, gender, role" +
+    @Select("SELECT emp_id as empId, name, department, age, gender, role, " +
             "payroll_id as payrollId FROM Employee WHERE emp_id=#{empId}")
     EmployeeDTO selectById(Long empId);
 
     @Insert("INSERT INTO Employee (emp_id, name, department, password, age, gender, role, payroll_id)" +
-            "VALUES (#{empId}, #{name}, #{department}, #{password}, #{age}, #{gender}, #{role}, #{payroll_id})")
+            "VALUES (#{empId}, #{name}, #{department}, #{password}, #{age}, #{gender}, #{role}, #{payrollId})")
     void insert(EmployeeDTO employee);
 
     @Update("UPDATE Employee SET name=#{name}, department=#{department}, age=#{age}, gender=#{gender}," +

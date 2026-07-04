@@ -32,26 +32,34 @@
                     <p class="text-muted mb-4">Initialize baseline records parameters. The system will deploy a default, temporary login password for structural safety parameters enforcement.</p>
                     <hr class="mb-4">
 
-                    <form action="AddEmployeeServlet" method="POST" class="row g-3">
+                    <form class="row g-3">
                         <div class="col-md-6">
-                            <label class="form-label fw-semibold">Full Legal Name</label>
-                            <input type="text" class="form-control" name="fullName" placeholder="e.g. Johnathan Smith" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label fw-semibold">Corporate Communications Email</label>
-                            <input type="email" class="form-control" name="email" placeholder="e.g. j.smith@company.com" required>
+                            <label class="form-label fw-semibold">Name</label>
+                            <input id="empName" type="text" class="form-control" name="fullName" placeholder="e.g. Johnathan Smith" required>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label fw-semibold">Department Core Unit assignment</label>
-                            <select class="form-select" name="department">
+                            <select id="empDept" class="form-select" name="department">
                                 <option value="Engineering">Engineering Matrix</option>
-                                <option value="People Operations">People Operations (HR)</option>
+                                <option value="HR">People Operations (HR)</option>
                                 <option value="Finance">Finance Department</option>
+                                <option value="ADMIN">System Administration</option>
                             </select>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label fw-semibold">Assigned Professional Corporate Title</label>
-                            <input type="text" class="form-control" name="jobTitle" placeholder="e.g. Junior Systems Analyst" required>
+                            <label class="form-label fw-semibold">AGE</label>
+                            <input id="empAge" type="number" class="form-control" name="jobTitle" min="18" max="60" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Gender</label>
+                            <input id="M" type="radio" class="form-radio" name="gender" value="M" checked/>
+                            <label for="M">Male</label>
+                            <input id="F" type="radio" class="form-radio" name="gender" value="F"/>
+                            <label for="F">Female</label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Role</label>
+                            <input id="empRole" type="text" class="form-control" name="jobTitle" placeholder="e.g. Junior Systems Analyst" required>
                         </div>
                         
                         <div class="col-12 mt-4">
@@ -66,7 +74,7 @@
 
                         <div class="col-12 text-end pt-4 mt-4 border-top">
                             <a href="employees.jsp" class="btn btn-light border px-4 me-2">Cancel</a>
-                            <button type="submit" class="btn btn-primary px-5 fw-semibold">Authorize Onboarding Process</button>
+                            <button onclick="registerEmployee(event)" class="btn btn-primary px-5 fw-semibold">Authorize Onboarding Process</button>
                         </div>
                     </form>
                 </div>
@@ -76,3 +84,56 @@
 
 </body>
 </html>
+<script>
+    const API_URL = "http://localhost:8090/employee/create"
+    async function registerEmployee(event) {
+        event.preventDefault();
+        // 1. Gather data from your DOM/Form inputs matching your EmployeeDTO fields
+        const employeeData = {
+            empId: null, // Set to an integer if updating, or null/omit if database auto-increments
+            name: document.getElementById('empName').value,
+            department: document.getElementById('empDept').value,
+            password: "default", // Raw password; Micronaut will hash this!
+            age: parseInt(document.getElementById('empAge').value, 10),
+            gender: document.querySelector('input[name="gender"]:checked').value,
+            role: document.getElementById('empRole').value,
+            payrollId: null 
+            // Maps nicely to your nullable Integer wrapper backend logic
+        };
+
+        // 2. Retrieve your secure token from localStorage
+        //const token = localStorage.getItem('userToken');
+
+        try {
+            // 3. Fire the POST request to your Micronaut endpoint
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    //'Authorization': `Bearer ${token}` // Protects the API route via JWT/UUID check
+                },
+                body: JSON.stringify(employeeData)
+            });
+
+            // 4. Handle response states
+            if (response.ok) {
+                const result = await response;
+                alert('Employee registered successfully!');
+                console.log('Server response:', result);
+                
+                // Redirect or refresh table logic here
+                window.location.href = "employees.jsp"
+            } else if (response.status === 401 || response.status === 403) {
+                alert('Session expired or unauthorized request.');
+                window.location.href = 'del-session.jsp'; // Kick them to logout if token is dead
+            } else {
+                const errorText = await response.text();
+                alert('Failed to save employee data: ' + errorText);
+            }
+
+        } catch (error) {
+            console.error('Network or Parsing Error:', error);
+            alert('Could not connect to the API server.');
+        }
+    }
+</script>

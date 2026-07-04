@@ -1,7 +1,9 @@
-//const API_URL = "http://192.168.200.10:8090/candidate";
-const API_URL = "http://localhost:8090/candidate";
+const API_URL = "http://192.168.200.10:8090/candidate";
+//const API_URL = "http://localhost:8090/candidate";
 
 async function populateList(){
+    const tableBody = document.getElementById("candidateList");
+        tableBody.innerHTML = "";
     try {
         const response = await fetch(API_URL+"/all")
 
@@ -9,8 +11,7 @@ async function populateList(){
 
         console.log(candidateList);
 
-        const tableBody = document.getElementById("candidateList");
-        tableBody.innerHTML = "";
+        
 
         candidateList.forEach(candidate => {
             const row = document.createElement('tr');
@@ -54,7 +55,7 @@ async function populateList(){
             tableBody.appendChild(row);
         });
     } catch (error) {
-        console.error('Error fetching job listings:', error);
+        tableBody.innerHTML = `<tr><td colspan="6" class="text-center text-danger py-4">${error}</td></tr>`;
     }
 }
 

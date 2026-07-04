@@ -8,6 +8,8 @@
         </encoder>
     </appender>
 
+    <logger name="com.hrapp.mapper" level="TRACE"/>
+
     <root level="info">
         <appender-ref ref="STDOUT" />
     </root>

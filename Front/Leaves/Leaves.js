@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:8090/Leaves";
+const API_URL = "http://192.168.200.10:8090/Leaves";
 
 async function populateList(){
     try {

@@ -21,9 +21,9 @@ public class LoginMapperImpl implements LoginMapper {
 
     @Override
     @Connectable
-    public EmployeeDTO findByLogin(String name, String department, String password) {
+    public EmployeeDTO findByLogin(String name, String department) {
         try(SqlSession sqlSession = currentSessionFactory.openSession()){
-            return getMapper(sqlSession).findByLogin(name, department, password);
+            return getMapper(sqlSession).findByLogin(name, department);
         }
     }
 }

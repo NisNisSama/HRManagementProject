@@ -17,15 +17,15 @@
 </head>
 <body class="bg-light">
 
-    <nav class="navbar navbar-expand-lg navbar-dark ${param.viewAs == 'HR' ? 'bg-dark' : (param.viewAs == 'ADMIN' ? 'bg-danger' : 'bg-primary')} mb-4">
+    <nav class="navbar navbar-expand-lg navbar-dark ${sessionScope.role == 'HR' ? 'bg-dark' : (sessionScope.role == 'ADMIN' ? 'bg-danger' : 'bg-primary')} mb-4">
         <div class="container-fluid px-4">
             <a class="navbar-brand fw-bold" href="#"><i class="bi bi-heart-pulse-fill me-2"></i>HRPulse</a>
             <div>
                 <c:choose>
-                    <c:when test="${param.viewAs == 'HR'}">
+                    <c:when test="${sessionScope.role == 'HR'}">
                         <a href="employees.jsp" class="btn btn-outline-light btn-sm"><i class="bi bi-arrow-left"></i> Employees Hub</a>
                     </c:when>
-                    <c:when test="${param.viewAs == 'ADMIN'}">
+                    <c:when test="${sessionScope.role == 'ADMIN'}">
                         <a href="admin.jsp" class="btn btn-outline-light btn-sm"><i class="bi bi-arrow-left"></i> Admin Terminal</a>
                     </c:when>
                     <c:otherwise>
@@ -45,10 +45,10 @@
                 </div>
                 <div>
                     <c:choose>
-                        <c:when test="${param.viewAs == 'HR'}">
+                        <c:when test="${sessionScope.role == 'HR'}">
                             <span class="badge bg-primary px-3 py-2"><i class="bi bi-shield-fill-check"></i> HR Management State</span>
                         </c:when>
-                        <c:when test="${param.viewAs == 'ADMIN'}">
+                        <c:when test="${sessionScope.role == 'ADMIN'}">
                             <span class="badge bg-danger px-3 py-2"><i class="bi bi-terminal-fill"></i> Root System Administration Override</span>
                         </c:when>
                         <c:otherwise>
@@ -64,7 +64,7 @@
                 <div class="card border-0 shadow-sm p-4 h-100 bg-white">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h4 class="fw-bold text-dark m-0">Core Registry Parameters</h4>
-                        <c:if test="${param.viewAs == 'ADMIN'}">
+                        <c:if test="${sessionScope.role == 'ADMIN'}">
                             <form action="AdminEraseServlet" method="POST" onsubmit="return confirm('CRITICAL: Are you absolutely sure you want to completely erase this employee from the database?')">
                                 <input type="hidden" name="empId" value="${param.targetEmpId}">
                                 <button type="submit" class="btn btn-sm btn-danger d-flex align-items-center gap-1 fw-bold"><i class="bi bi-exclamation-triangle-fill"></i> Erase Employee Account</button>
@@ -75,18 +75,18 @@
                     
                     <form action="SaveProfileServlet" method="POST" class="row g-3">
                         <input type="hidden" name="empId" value="${param.targetEmpId != null ? param.targetEmpId : 'EMP-102'}">
-                        <input type="hidden" name="viewAs" value="${param.viewAs}">
+                        <input type="hidden" name="viewAs" value="${sessionScope.role}">
 
                         <div class="col-md-6">
                             <label class="form-label small fw-bold text-secondary">Assigned Professional Title</label>
-                            <input type="text" class="form-control" name="jobTitle" value="Senior Frontend Engineer" ${param.viewAs == 'HR' ? '' : 'readonly'}>
+                            <input type="text" class="form-control" name="jobTitle" value="Senior Frontend Engineer" ${sessionScope.role == 'HR' ? '' : 'readonly'}>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label small fw-bold text-secondary">Department Assignment</label>
-                            <input type="text" class="form-control" name="department" value="Engineering" ${param.viewAs == 'HR' ? '' : 'readonly'}>
+                            <input type="text" class="form-control" name="department" value="Engineering" ${sessionScope.role == 'HR' ? '' : 'readonly'}>
                         </div>
 
-                        <c:if test="${param.viewAs == 'ADMIN'}">
+                        <c:if test="${sessionScope.role == 'ADMIN'}">
                             <div class="col-md-12">
                                 <label class="form-label small fw-bold text-danger">System Access Authorization Role (Admin Override)</label>
                                 <select class="form-select border-danger" name="systemRole">
@@ -99,21 +99,21 @@
 
                         <div class="col-md-6">
                             <label class="form-label small fw-bold text-secondary">Email Address</label>
-                            <input type="email" class="form-control" name="email" value="jane.doe@company.com" ${param.viewAs == 'ADMIN' ? 'readonly' : ''}>
+                            <input type="email" class="form-control" name="email" value="jane.doe@company.com" ${sessionScope.role == 'ADMIN' ? 'readonly' : ''}>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label small fw-bold text-secondary">Residential Location Address</label>
-                            <input type="text" class="form-control" name="address" value="452 Broadway, NY" ${param.viewAs == 'ADMIN' ? 'readonly' : ''}>
+                            <input type="text" class="form-control" name="address" value="452 Broadway, NY" ${sessionScope.role == 'ADMIN' ? 'readonly' : ''}>
                         </div>
 
                         <c:choose>
-                            <c:when test="${empty param.viewAs || param.viewAs == null}">
+                            <c:when test="${empty sessionScope.role || sessionScope.role == null}">
                                 <div class="col-12 p-3 bg-light rounded border mt-3">
                                     <h5 class="fw-bold text-dark mb-2"><i class="bi bi-key-fill text-warning me-1"></i>Modify Personal Login Password</h5>
                                     <input type="password" class="form-control form-control-sm" name="newPassword" placeholder="Type new password string here...">
                                 </div>
                             </c:when>
-                            <c:when test="${param.viewAs == 'ADMIN'}">
+                            <c:when test="${sessionScope.role == 'ADMIN'}">
                                 <div class="col-12 p-3 bg-danger bg-opacity-10 rounded border border-danger mt-3">
                                     <h5 class="fw-bold text-danger mb-2"><i class="bi bi-shield-slash-fill me-1"></i>Administrative Forced Password Reset</h5>
                                     <input type="password" class="form-control form-control-sm border-danger" name="adminOverriddenPassword" placeholder="Enforce fresh new baseline credential sequence...">
@@ -123,7 +123,7 @@
                         </c:choose>
 
                         <div class="col-12 text-end pt-3 mt-3 border-top">
-                            <button type="submit" class="btn ${param.viewAs == 'ADMIN' ? 'btn-danger' : 'btn-success'} px-4 fw-semibold">Commit Workspace Save</button>
+                            <button type="submit" class="btn ${sessionScope.role == 'ADMIN' ? 'btn-danger' : 'btn-success'} px-4 fw-semibold">Commit Workspace Save</button>
                         </div>
                     </form>
                 </div>
@@ -135,7 +135,7 @@
                     <p class="text-muted small mb-3">System storage containing verification protocols and credential attachments.</p>
                     <hr>
 
-                    <c:if test="${empty param.viewAs || param.viewAs == null}">
+                    <c:if test="${empty sessionScope.role || sessionScope.role == null}">
                         <form action="UploadDocServlet" method="POST" enctype="multipart/form-data" class="input-group input-group-sm mb-4">
                             <input type="file" class="form-control" name="userDoc" required>
                             <button type="submit" class="btn btn-primary fw-semibold"><i class="bi bi-upload"></i> Upload</button>
@@ -157,7 +157,7 @@
                                         <div class="btn-group btn-group-sm">
                                             <a href="#" class="btn btn-outline-secondary" title="Download/View File"><i class="bi bi-eye-fill"></i> View</a>
                                             
-                                            <c:if test="${empty param.viewAs || param.viewAs == 'ADMIN'}">
+                                            <c:if test="${empty sessionScope.role || sessionScope.role == 'ADMIN'}">
                                                 <button class="btn btn-outline-danger" onclick="return confirm('Delete this record permanently?')" title="Delete File"><i class="bi bi-trash-fill"></i></button>
                                             </c:if>
                                         </div>

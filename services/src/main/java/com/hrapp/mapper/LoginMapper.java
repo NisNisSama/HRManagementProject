@@ -5,9 +5,8 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 public interface LoginMapper {
-    @Select("SELECT emp_id as empId, name, department, role FROM Employee " +
-            "WHERE name=#{name} AND department=#{department} AND password=#{password}")
+    @Select("SELECT emp_id as empId, name, department, password, role FROM Employee " +
+            "WHERE name=#{name} AND department=#{department}")
     EmployeeDTO findByLogin(@Param("name") String name,
-                            @Param("department") String department,
-                            @Param("password") String password);
+                            @Param("department") String department);
 }
